@@ -131,18 +131,56 @@ public final class WriterUtil {
                     .append(onDuplicateKeyUpdateString(columnHolders))
                     .toString();
         } else {
-
-            //这里是保护,如果其他错误的使用了update,需要更换为replace
-            if (writeMode.trim().toLowerCase().startsWith("update")) {
-                writeMode = "replace";
+            //新增postgresl支持 update模式
+            if (dataBaseType == DataBaseType.PostgreSQL) {
+                writeDataSqlTemplate = new StringBuilder().append("INSERT INTO %s (")
+                        .append(StringUtils.join(columnHolders, ","))
+                        .append(") VALUES(").append(StringUtils.join(valueHolders, ","))
+                        .append(")").append(onConFlictDoString(writeMode, columnHolders)).toString();
+            } else {
+                //这里是保护,如果其他错误的使用了update,需要更换为replace
+                if (writeMode.trim().toLowerCase().startsWith("update")) {
+                    writeMode = "replace";
+                }
+                writeDataSqlTemplate = new StringBuilder().append(writeMode)
+                        .append(" INTO %s (").append(StringUtils.join(columnHolders, ","))
+                        .append(") VALUES(").append(StringUtils.join(valueHolders, ","))
+                        .append(")").toString();
             }
-            writeDataSqlTemplate = new StringBuilder().append(writeMode)
-                    .append(" INTO %s (").append(StringUtils.join(columnHolders, ","))
-                    .append(") VALUES(").append(StringUtils.join(valueHolders, ","))
-                    .append(")").toString();
         }
 
         return writeDataSqlTemplate;
+    }
+
+    /**
+     *  pgsql出现已有 需要新增时，使用on conflict 模式
+     * @param conflict
+     * @param columnHolders
+     * @return
+     */
+    public static String onConFlictDoString(String conflict, List<String> columnHolders) {
+        conflict = conflict.replace("update", "");
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ON CONFLICT ");
+        sb.append(conflict);
+        sb.append(" DO ");
+        if (columnHolders == null || columnHolders.size() < 1) {
+            sb.append("NOTHING");
+            return sb.toString();
+        }
+        sb.append(" UPDATE SET ");
+        boolean first = true;
+        for (String column : columnHolders) {
+            if (!first) {
+                sb.append(",");
+            } else {
+                first = false;
+            }
+            sb.append(column);
+            sb.append("=excluded.");
+            sb.append(column);
+        }
+        return sb.toString();
     }
 
     public static String onDuplicateKeyUpdateString(List<String> columnHolders){
