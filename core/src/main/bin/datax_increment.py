@@ -239,7 +239,7 @@ def generateJsonWhere(JDBCURL,TABLE_NAME):
                             port=5432,
                             database='postgres',
                             user='postgres',
-                            password='mlsk@admin$123')
+                            password='postgres')
     cur = conn.cursor()
     cur.execute(selectSql(JDBCURL,TABLE_NAME))
 
