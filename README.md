@@ -1,3 +1,9 @@
+# Datax 自更新版
+- [datax_v2023012]
+  -  新增pgsql 支持 update模式
+  -  新增支持通过pg重新组装json，实现按照时间增量传输。
+
+# 以下是原DATAX的说明文档。
 ![Datax-logo](https://github.com/alibaba/DataX/blob/master/images/DataX-logo.jpg)
 
 # DataX
