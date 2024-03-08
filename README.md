@@ -1,5 +1,7 @@
 # Datax 自更新版
-- [datax_v2023012]
+- [datax_v20240308]
+  -  新增oraclereader支持SqlXML格式。调整ojdbc6-->ojdbc8 
+- [datax_v20230102]
   -  新增pgsql 支持 update模式
   -  新增支持通过pg重新组装json，实现按照时间增量传输。
 

@@ -23,6 +23,8 @@ import com.alibaba.datax.plugin.rdbms.util.DataBaseType;
 import com.alibaba.datax.plugin.rdbms.util.RdbmsException;
 import com.google.common.collect.Lists;
 
+import oracle.sql.OPAQUE;
+import oracle.xdb.XMLType;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -315,7 +317,17 @@ public class CommonRdbmsReader {
                     case Types.BIT:
                         record.addColumn(new BoolColumn(rs.getBoolean(i)));
                         break;
-
+                    // warn: xml -> Types.SQLXML 支持oracle Xmltype
+                    case Types.SQLXML:
+                        OPAQUE object = (OPAQUE) rs.getObject(i);
+                        if (object == null) {
+                            record.addColumn(new StringColumn(""));
+                            }
+                        else {
+                            XMLType xml = XMLType.createXML(object);
+                            record.addColumn(new StringColumn(xml.getString()));
+                            }
+                            break;
                     case Types.NULL:
                         String stringData = null;
                         if(rs.getObject(i) != null) {
