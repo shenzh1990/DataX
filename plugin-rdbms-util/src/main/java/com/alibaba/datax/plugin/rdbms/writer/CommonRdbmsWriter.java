@@ -432,10 +432,10 @@ public class CommonRdbmsWriter {
                 case Types.LONGVARCHAR:
                 case Types.NVARCHAR:
                 case Types.LONGNVARCHAR:
-                    preparedStatement.setString(columnIndex + 1, column
-                            .asString());
+                    preparedStatement.setString(columnIndex + 1, null!=column
+                            .asString()?column.asString().replaceAll("\\u0000",""):column
+                            .asString());//解决oracle出现\\u0000的问题
                     break;
-
                 case Types.SMALLINT:
                 case Types.INTEGER:
                 case Types.BIGINT:

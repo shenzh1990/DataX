@@ -1,4 +1,7 @@
 # Datax 自更新版
+
+- [datax_v20240320]
+  -  修复oracle出现\\u0000的问题，数据存入postgresql出现异常
 - [datax_v20240308]
   -  新增oraclereader支持SqlXML格式。调整ojdbc6-->ojdbc8 
 - [datax_v20230102]
