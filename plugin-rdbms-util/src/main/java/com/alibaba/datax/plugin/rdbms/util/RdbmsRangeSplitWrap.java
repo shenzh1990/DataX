@@ -91,7 +91,7 @@ public final class RdbmsRangeSplitWrap {
 
         if (dataBaseType.equals(DataBaseType.MySql)) {
             return aString.replace("'", "''").replace("\\", "\\\\");
-        } else if (dataBaseType.equals(DataBaseType.Oracle) || dataBaseType.equals(DataBaseType.SQLServer)) {
+        } else if (dataBaseType.equals(DataBaseType.Oracle) || dataBaseType.equals(DataBaseType.SQLServer)|| dataBaseType.equals(DataBaseType.SQLServerJTDS)) {
             return aString.replace("'", "''");
         } else {
             //TODO other type supported

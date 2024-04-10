@@ -15,6 +15,7 @@ public enum DataBaseType {
     DRDS("drds", "com.mysql.jdbc.Driver"),
     Oracle("oracle", "oracle.jdbc.OracleDriver"),
     SQLServer("sqlserver", "com.microsoft.sqlserver.jdbc.SQLServerDriver"),
+    SQLServerJTDS("sqlserver", "net.sourceforge.jtds.jdbc.Driver"),
     PostgreSQL("postgresql", "org.postgresql.Driver"),
     RDBMS("rdbms", "com.alibaba.datax.plugin.rdbms.util.DataBaseType"),
     DB2("db2", "com.ibm.db2.jcc.DB2Driver"),
@@ -57,6 +58,8 @@ public enum DataBaseType {
             case Oracle:
                 break;
             case SQLServer:
+                break;
+            case SQLServerJTDS:
                 break;
             case DB2:
                 break;
@@ -113,6 +116,8 @@ public enum DataBaseType {
                 break;
             case SQLServer:
                 break;
+            case SQLServerJTDS:
+                break;
             case DB2:
                 break;
             case PostgreSQL:
@@ -159,6 +164,11 @@ public enum DataBaseType {
                     result = splitPk.substring(1, splitPk.length() - 1).toLowerCase();
                 }
                 break;
+            case SQLServerJTDS:
+                if (splitPk.length() >= 2 && splitPk.startsWith("[") && splitPk.endsWith("]")) {
+                    result = splitPk.substring(1, splitPk.length() - 1).toLowerCase();
+                }
+                break;
             case DB2:
             case PostgreSQL:
             case KingbaseES:
@@ -186,6 +196,9 @@ public enum DataBaseType {
             case SQLServer:
                 result = "[" + columnName + "]";
                 break;
+            case SQLServerJTDS:
+                result = "[" + columnName + "]";
+                break;
             case DB2:
             case PostgreSQL:
             case KingbaseES:
@@ -210,6 +223,8 @@ public enum DataBaseType {
             case Oracle:
                 break;
             case SQLServer:
+                break;
+            case SQLServerJTDS:
                 break;
             case DB2:
                 break;

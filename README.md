@@ -1,5 +1,7 @@
 # Datax 自更新版
 
+- [datax_v20240410]
+  -  修复SqlServer低版本出现TSL问题，使用SqlServerNtReader或者在原有SqlServerReader中添加JDTS，两种方式都可以选择。
 - [datax_v20240320]
   -  修复oracle出现\\u0000的问题，数据存入postgresql出现异常
 - [datax_v20240308]

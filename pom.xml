@@ -50,6 +50,7 @@
         <module>mysqlreader</module>
         <module>drdsreader</module>
         <module>sqlserverreader</module>
+        <module>sqlserverntreader</module>
         <module>postgresqlreader</module>
         <module>kingbaseesreader</module>
         <module>oraclereader</module>
