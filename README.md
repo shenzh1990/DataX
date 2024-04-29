@@ -1,5 +1,8 @@
 # Datax 自更新版
-
+- [datax_v20240428]
+  -  提交sqlserverNtReader代码。sqlserverReader调整为支持老版本。
+  -  提交修复sysbase原datax-master版本错误信息（package.xml中路径错误和resource文件夹路劲位置问题 ）。
+  -  新增pom和package区分自用需要的和不需要的读写jar。
 - [datax_v20240410]
   -  修复SqlServer低版本出现TSL问题，使用SqlServerNtReader或者在原有SqlServerReader中添加JDTS，两种方式都可以选择。
 - [datax_v20240320]

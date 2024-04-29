@@ -47,20 +47,18 @@
         <module>transformer</module>
 
         <!-- reader -->
-<!--        <module>mysqlreader</module>-->
-<!--        <module>sqlserverreader</module>-->
-<!--        <module>postgresqlreader</module>-->
-<!--        <module>kingbaseesreader</module>-->
-<!--        <module>oraclereader</module>-->
-<!--        <module>mongodbreader</module>-->
-        <module>sybasereader</module>
+        <module>mysqlreader</module>
+        <module>sqlserverreader</module>
+        <module>postgresqlreader</module>
+        <module>kingbaseesreader</module>
+        <module>oraclereader</module>
+        <module>mongodbreader</module>
         <!-- writer -->
-<!--        <module>mysqlwriter</module>-->
-<!--        <module>postgresqlwriter</module>-->
-<!--        <module>elasticsearchwriter</module>-->
-<!--        <module>mongodbwriter</module>-->
-<!--        <module>clickhousewriter</module>-->
-        <module>sybasewriter</module>
+        <module>mysqlwriter</module>
+        <module>postgresqlwriter</module>
+        <module>elasticsearchwriter</module>
+        <module>mongodbwriter</module>
+        <module>clickhousewriter</module>
         <!-- common support module -->
         <module>plugin-rdbms-util</module>
         <module>plugin-unstructured-storage-util</module>
