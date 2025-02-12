@@ -132,7 +132,7 @@ public final class WriterUtil {
                     .toString();
         } else {
             //新增postgresl支持 update模式
-            if (dataBaseType == DataBaseType.PostgreSQL) {
+            if (dataBaseType == DataBaseType.PostgreSQL && writeMode.trim().toLowerCase().startsWith("update")) {
                 writeDataSqlTemplate = new StringBuilder().append("INSERT INTO %s (")
                         .append(StringUtils.join(columnHolders, ","))
                         .append(") VALUES(").append(StringUtils.join(valueHolders, ","))

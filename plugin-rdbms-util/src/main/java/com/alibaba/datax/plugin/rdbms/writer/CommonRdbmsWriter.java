@@ -542,6 +542,9 @@ public class CommonRdbmsWriter {
                         preparedStatement.setString(columnIndex + 1, column.asString());
                     }
                     break;
+                case Types.SQLXML:
+                    preparedStatement.setString(columnIndex + 1, column.asString());
+                    break;
                 default:
                     throw DataXException
                             .asDataXException(
